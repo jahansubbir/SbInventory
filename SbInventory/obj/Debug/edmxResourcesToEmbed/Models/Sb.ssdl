@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SbDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="RPO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RPOLogin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RPOId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SBDispatch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DRDate" Type="datetime" Nullable="false" />
+    <Property Name="DRTime" Type="smalldatetime" Nullable="false" />
+    <Property Name="EID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Remarks" Type="varchar" MaxLength="50" />
+    <Property Name="SBDSBId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SBDSB">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RPOId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SBReceive">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DRDate" Type="date" Nullable="false" />
+    <Property Name="DRTime" Type="smalldatetime" Nullable="false" />
+    <Property Name="EID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Remarks" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SBDSBId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DIDId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_RPOLogin_RPO">
+    <End Role="RPO" Type="Self.RPO" Multiplicity="1" />
+    <End Role="RPOLogin" Type="Self.RPOLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RPO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RPOLogin">
+        <PropertyRef Name="RPOId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SBDispatch_SBDSB">
+    <End Role="SBDSB" Type="Self.SBDSB" Multiplicity="1" />
+    <End Role="SBDispatch" Type="Self.SBDispatch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SBDSB">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SBDispatch">
+        <PropertyRef Name="SBDSBId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SBReceive_SBDSB">
+    <End Role="SBDSB" Type="Self.SBDSB" Multiplicity="1" />
+    <End Role="SBReceive" Type="Self.SBReceive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SBDSB">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SBReceive">
+        <PropertyRef Name="SBDSBId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SbDBModelStoreContainer">
+    <EntitySet Name="RPO" EntityType="Self.RPO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RPOLogin" EntityType="Self.RPOLogin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SBDispatch" EntityType="Self.SBDispatch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SBDSB" EntityType="Self.SBDSB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SBReceive" EntityType="Self.SBReceive" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_RPOLogin_RPO" Association="Self.FK_RPOLogin_RPO">
+      <End Role="RPO" EntitySet="RPO" />
+      <End Role="RPOLogin" EntitySet="RPOLogin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SBDispatch_SBDSB" Association="Self.FK_SBDispatch_SBDSB">
+      <End Role="SBDSB" EntitySet="SBDSB" />
+      <End Role="SBDispatch" EntitySet="SBDispatch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SBReceive_SBDSB" Association="Self.FK_SBReceive_SBDSB">
+      <End Role="SBDSB" EntitySet="SBDSB" />
+      <End Role="SBReceive" EntitySet="SBReceive" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SbDBModel1StoreContainer" CdmEntityContainer="SbDBViewEntities">
+    <EntitySetMapping Name="DispatchViews">
+      <EntityTypeMapping TypeName="SbDBModel1.DispatchView">
+        <MappingFragment StoreEntitySet="DispatchView">
+          <ScalarProperty Name="DRDate" ColumnName="DRDate" />
+          <ScalarProperty Name="DRTime" ColumnName="DRTime" />
+          <ScalarProperty Name="EID" ColumnName="EID" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="SBDSB" ColumnName="SBDSB" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReceiveViews">
+      <EntityTypeMapping TypeName="SbDBModel1.ReceiveView">
+        <MappingFragment StoreEntitySet="ReceiveView">
+          <ScalarProperty Name="DRDate" ColumnName="DRDate" />
+          <ScalarProperty Name="DRTime" ColumnName="DRTime" />
+          <ScalarProperty Name="EID" ColumnName="EID" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="SBDSB" ColumnName="SBDSB" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

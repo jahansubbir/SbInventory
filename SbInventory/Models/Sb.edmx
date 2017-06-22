@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SbDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="RPO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RPOLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RPOId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SBDispatch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DRDate" Type="datetime" Nullable="false" />
+          <Property Name="DRTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="EID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" />
+          <Property Name="SBDSBId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SBDSB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RPOId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SBReceive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DRDate" Type="date" Nullable="false" />
+          <Property Name="DRTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="EID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SBDSBId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DIDId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_RPOLogin_RPO">
+          <End Role="RPO" Type="Self.RPO" Multiplicity="1" />
+          <End Role="RPOLogin" Type="Self.RPOLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RPO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RPOLogin">
+              <PropertyRef Name="RPOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SBDispatch_SBDSB">
+          <End Role="SBDSB" Type="Self.SBDSB" Multiplicity="1" />
+          <End Role="SBDispatch" Type="Self.SBDispatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SBDSB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SBDispatch">
+              <PropertyRef Name="SBDSBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SBReceive_SBDSB">
+          <End Role="SBDSB" Type="Self.SBDSB" Multiplicity="1" />
+          <End Role="SBReceive" Type="Self.SBReceive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SBDSB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SBReceive">
+              <PropertyRef Name="SBDSBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SbDBModelStoreContainer">
+          <EntitySet Name="RPO" EntityType="Self.RPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RPOLogin" EntityType="Self.RPOLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SBDispatch" EntityType="Self.SBDispatch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SBDSB" EntityType="Self.SBDSB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SBReceive" EntityType="Self.SBReceive" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_RPOLogin_RPO" Association="Self.FK_RPOLogin_RPO">
+            <End Role="RPO" EntitySet="RPO" />
+            <End Role="RPOLogin" EntitySet="RPOLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SBDispatch_SBDSB" Association="Self.FK_SBDispatch_SBDSB">
+            <End Role="SBDSB" EntitySet="SBDSB" />
+            <End Role="SBDispatch" EntitySet="SBDispatch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SBReceive_SBDSB" Association="Self.FK_SBReceive_SBDSB">
+            <End Role="SBDSB" EntitySet="SBDSB" />
+            <End Role="SBReceive" EntitySet="SBReceive" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SbDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="RPO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RPOLogins" Relationship="Self.FK_RPOLogin_RPO" FromRole="RPO" ToRole="RPOLogin" />
+        </EntityType>
+        <EntityType Name="RPOLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RPOId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RPO" Relationship="Self.FK_RPOLogin_RPO" FromRole="RPOLogin" ToRole="RPO" />
+        </EntityType>
+        <EntityType Name="SBDispatch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DRDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DRTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SBDSBId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SBDSB" Relationship="Self.FK_SBDispatch_SBDSB" FromRole="SBDispatch" ToRole="SBDSB" />
+        </EntityType>
+        <EntityType Name="SBDSB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RPOId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SBDispatches" Relationship="Self.FK_SBDispatch_SBDSB" FromRole="SBDSB" ToRole="SBDispatch" />
+          <NavigationProperty Name="SBReceives" Relationship="Self.FK_SBReceive_SBDSB" FromRole="SBDSB" ToRole="SBReceive" />
+        </EntityType>
+        <EntityType Name="SBReceive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DRDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DRTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SBDSBId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIDId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SBDSB" Relationship="Self.FK_SBReceive_SBDSB" FromRole="SBReceive" ToRole="SBDSB" />
+        </EntityType>
+        <Association Name="FK_RPOLogin_RPO">
+          <End Role="RPO" Type="Self.RPO" Multiplicity="1" />
+          <End Role="RPOLogin" Type="Self.RPOLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RPO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RPOLogin">
+              <PropertyRef Name="RPOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SBDispatch_SBDSB">
+          <End Role="SBDSB" Type="Self.SBDSB" Multiplicity="1" />
+          <End Role="SBDispatch" Type="Self.SBDispatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SBDSB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SBDispatch">
+              <PropertyRef Name="SBDSBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SBReceive_SBDSB">
+          <End Role="SBDSB" Type="Self.SBDSB" Multiplicity="1" />
+          <End Role="SBReceive" Type="Self.SBReceive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SBDSB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SBReceive">
+              <PropertyRef Name="SBDSBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SbDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RPOes" EntityType="Self.RPO" />
+          <EntitySet Name="RPOLogins" EntityType="Self.RPOLogin" />
+          <EntitySet Name="SBDispatches" EntityType="Self.SBDispatch" />
+          <EntitySet Name="SBDSBs" EntityType="Self.SBDSB" />
+          <EntitySet Name="SBReceives" EntityType="Self.SBReceive" />
+          <AssociationSet Name="FK_RPOLogin_RPO" Association="Self.FK_RPOLogin_RPO">
+            <End Role="RPO" EntitySet="RPOes" />
+            <End Role="RPOLogin" EntitySet="RPOLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SBDispatch_SBDSB" Association="Self.FK_SBDispatch_SBDSB">
+            <End Role="SBDSB" EntitySet="SBDSBs" />
+            <End Role="SBDispatch" EntitySet="SBDispatches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SBReceive_SBDSB" Association="Self.FK_SBReceive_SBDSB">
+            <End Role="SBDSB" EntitySet="SBDSBs" />
+            <End Role="SBReceive" EntitySet="SBReceives" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SbDBModelStoreContainer" CdmEntityContainer="SbDBEntities">
+          <EntitySetMapping Name="RPOes">
+            <EntityTypeMapping TypeName="SbDBModel.RPO">
+              <MappingFragment StoreEntitySet="RPO">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RPOLogins">
+            <EntityTypeMapping TypeName="SbDBModel.RPOLogin">
+              <MappingFragment StoreEntitySet="RPOLogin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RPOId" ColumnName="RPOId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SBDispatches">
+            <EntityTypeMapping TypeName="SbDBModel.SBDispatch">
+              <MappingFragment StoreEntitySet="SBDispatch">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DRDate" ColumnName="DRDate" />
+                <ScalarProperty Name="DRTime" ColumnName="DRTime" />
+                <ScalarProperty Name="EID" ColumnName="EID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="SBDSBId" ColumnName="SBDSBId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SBDSBs">
+            <EntityTypeMapping TypeName="SbDBModel.SBDSB">
+              <MappingFragment StoreEntitySet="SBDSB">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RPOId" ColumnName="RPOId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SBReceives">
+            <EntityTypeMapping TypeName="SbDBModel.SBReceive">
+              <MappingFragment StoreEntitySet="SBReceive">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DRDate" ColumnName="DRDate" />
+                <ScalarProperty Name="DRTime" ColumnName="DRTime" />
+                <ScalarProperty Name="EID" ColumnName="EID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="SBDSBId" ColumnName="SBDSBId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DIDId" ColumnName="DIDId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,69 @@
+﻿@model SbInventory.Models.RPOLogin
+
+@{
+    ViewBag.Title = "Login";
+}
+<link href="~/Content/animate.css" rel="stylesheet" />
+@*<h2>Login</h2>*@
+@if (TempData["message"] != null)
+{
+    <div class="alert-danger w3-card-4" style="margin-left: 300px; width: 300px">@TempData["message"]</div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="w3-card-4 bounce" style="margin-left: 300px; width: 300px">
+    @ViewBag.Message
+</div>
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>RPOLogin</h4>
+            <hr />*@
+        @Html.ValidationSummary(true)
+        <div class="w3-card-4" style="margin-top: 200px;padding: 20px">
+            <div class="form-group">
+                @Html.LabelFor(model => model.RPOId, "RPOId", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("RPOId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.RPOId)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserId, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UserId)
+                    @Html.ValidationMessageFor(model => model.UserId)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password)
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Login" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

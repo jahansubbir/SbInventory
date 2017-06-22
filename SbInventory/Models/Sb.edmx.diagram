@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="64972438701e436d99b10082efa013e1" Name="Diagram1">
+        <EntityTypeShape EntityType="SbDBModel.RPO" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SbDBModel.RPOLogin" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SbDBModel.SBDispatch" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SbDBModel.SBDSB" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SbDBModel.SBReceive" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="SbDBModel.FK_RPOLogin_RPO" ManuallyRouted="false" />
+        <AssociationConnector Association="SbDBModel.FK_SBDispatch_SBDSB" ManuallyRouted="false" />
+        <AssociationConnector Association="SbDBModel.FK_SBReceive_SBDSB" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-SbInventory-20170605075928.mdf;Initial Catalog=aspnet-SbInventory-20170605075928;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\jahan\ subbir\\documents\\visual\ studio\ 2013\\Projects\\SbInventory\\SbInventory\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="SbDBEntities-Web.config Connection String" description="SbDBEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Sb.csdl|res://*/Models.Sb.ssdl|res://*/Models.Sb.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-I9GMAOM;initial catalog=SbDB;persist security info=True;user id=sa;password=atl@sql;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\jahan\ subbir\\documents\\visual\ studio\ 2013\\Projects\\SbInventory\\SbInventory\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SbDBEntities']/@connectionString" />
+  </parameter>
+  <parameter name="SbDBViewEntities-Web.config Connection String" description="SbDBViewEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.ViewModels.csdl|res://*/Models.ViewModels.ssdl|res://*/Models.ViewModels.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-I9GMAOM;initial catalog=SbDB;persist security info=True;user id=sa;password=atl@sql;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\jahan\ subbir\\documents\\visual\ studio\ 2013\\Projects\\SbInventory\\SbInventory\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SbDBViewEntities']/@connectionString" />
+  </parameter>
+</parameters>

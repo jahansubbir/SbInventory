@@ -1,0 +1,166 @@
+﻿@using System.Web.UI.WebControls
+@model SbInventory.Models.SBDispatch
+
+@{
+    ViewBag.Title = "Report";
+}
+
+<h2>Report</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @*<h4>Report</h4>*@
+        <hr/>
+        <div class="w3-card-4" style="margin-top: 300px; margin-left: 200px; max-width: 600px;padding: 10px">
+            @Html.ValidationSummary(true)
+            <div>
+                <fieldset>
+                    <legend>
+                        @*@Html.Label("Status")*@Status
+                    </legend>
+                    <div class="col-md-10">
+                        <div style="float: left">
+                            <select id="Remarks">
+                                <option value="0">Select</option>
+                                <option value="Dispatch">Dispatch</option>
+                                <option value="Receive">Receive</option>
+                            </select>
+                        </div>
+                        <div id="dispatchDiv">
+                            <input type="radio" name="Status" value="New Dispatch"/>New Dispatch
+                            <input type="radio" name="Status" value="Re-Dispatched"/>Re-Dispatched
+                        </div>
+                        <div id="receiveDiv">
+                            <input type="radio" name="Status" value="Positive" />Positive
+                            <input type="radio" name="Status" value="Negative" />Negative
+                        </div>
+    @*<div style="margin-left: 150px">
+        <select id="SelectDispatch" name="Status">
+            <option value="0">Select</option>
+            <option value="New Dispatch">New Dispatch</option>
+            <option value="Re-Dispatched">Re-Dispatched</option>
+        </select>
+        <select id="SelectReceive" name="Status">
+            <option value="0">Select</option>
+            <option value="Positive">Positive</option>
+            <option value="Negative">Negative</option>
+        </select>
+    </div>*@
+                        @Html.ValidationMessage("Select Dispatch or Receive")
+                    </div>
+                </fieldset>
+            </div>
+
+            <div>
+                <fieldset>
+                    <legend>
+                        @*@Html.LabelFor(model => model.SBDSBId, "SB/DSB")*@
+                        SB/DSB
+                    </legend>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.SBDSBId, ViewBag.SbDsbs as SelectList, "Select")
+                        @Html.ValidationMessageFor(model => model.SBDSBId)
+                    </div>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+                    <legend>Date</legend>
+                    <table class="table table-striped">
+                        <tr>
+                            <td><label>From</label></td>
+                            <td>@Html.Editor("FromDate")</td>
+                            <td></td>
+                            <td><label>To</label></td>
+                            <td>@Html.Editor("ToDate")</td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+            <div>
+                <fieldset>
+                    <legend>Time</legend>
+                    <table class="table table-striped">
+                        <tr>
+                            <td><label>From</label></td>
+                            <td>@Html.Editor("FromTime")</td>
+                            <td></td>
+                            <td><label>To</label></td>
+                            <td>@Html.Editor("ToTime")</td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+            <br/>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Print" class="btn buttons-collection" />
+                </div>
+            </div>
+
+        </div>
+
+        
+
+       
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts{
+
+    @*<script src="~/Scripts/jquery-3.1.1.min.js"></script>*@
+    @*<script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+    <script>
+        $(document).ready(function () {
+            $("#dispatchDiv").hide();
+            $("#receiveDiv").hide();
+            $("#Remarks").change(function () {
+                $("#Status").empty();
+                $("#dispatchDiv").hide();
+                $("#receiveDiv").hide();
+                var remarks = $("#Remarks").val();
+                var status;
+                if (remarks=="Dispatch") {
+                    $("#Status").empty();
+                    $("#dispatchDiv").show();
+                    status = $("#Status").val();
+                    alert(status);
+                } else if(remarks=="Receive") {
+                    $("#Status").empty();
+                    $("#receiveDiv").show();
+                    status = $("#Status").val();
+                    alert(status);
+                }
+            });
+            //$("#SelectDispatch").hide();
+            //$("#SelectReceive").hide();
+            //$('#Remarks').change(function() {
+            //    $("#SelectDispatch").hide();
+            //    $("#SelectReceive").hide();
+            //    var remarks = $('#Remarks').val();
+            //    if (remarks == "Dispatch") {
+            //        $("#SelectDispatch").show();
+
+            //    } else if (remarks == "Receive") {
+
+            //        $("#SelectReceive").show();
+
+
+            //    }
+            //    $("#Status").change(function() {
+            //        var status = $("#Status").val();
+            //        alert(status);
+            //    });
+            //});
+
+        });
+    </script>
+}

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SbDBModelStoreContainer" CdmEntityContainer="SbDBEntities">
+    <EntitySetMapping Name="RPOes">
+      <EntityTypeMapping TypeName="SbDBModel.RPO">
+        <MappingFragment StoreEntitySet="RPO">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RPOLogins">
+      <EntityTypeMapping TypeName="SbDBModel.RPOLogin">
+        <MappingFragment StoreEntitySet="RPOLogin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RPOId" ColumnName="RPOId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SBDispatches">
+      <EntityTypeMapping TypeName="SbDBModel.SBDispatch">
+        <MappingFragment StoreEntitySet="SBDispatch">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DRDate" ColumnName="DRDate" />
+          <ScalarProperty Name="DRTime" ColumnName="DRTime" />
+          <ScalarProperty Name="EID" ColumnName="EID" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="SBDSBId" ColumnName="SBDSBId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SBDSBs">
+      <EntityTypeMapping TypeName="SbDBModel.SBDSB">
+        <MappingFragment StoreEntitySet="SBDSB">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RPOId" ColumnName="RPOId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SBReceives">
+      <EntityTypeMapping TypeName="SbDBModel.SBReceive">
+        <MappingFragment StoreEntitySet="SBReceive">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DRDate" ColumnName="DRDate" />
+          <ScalarProperty Name="DRTime" ColumnName="DRTime" />
+          <ScalarProperty Name="EID" ColumnName="EID" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="SBDSBId" ColumnName="SBDSBId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DIDId" ColumnName="DIDId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

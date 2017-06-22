@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SbDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SbDB.dbo.DispatchView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DispatchView">
+          <Key>
+            <PropertyRef Name="DRDate" />
+            <PropertyRef Name="DRTime" />
+            <PropertyRef Name="EID" />
+            <PropertyRef Name="SBDSB" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="DRDate" Type="datetime" Nullable="false" />
+          <Property Name="DRTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="EID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" />
+          <Property Name="SBDSB" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SbDB.dbo.ReceiveView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ReceiveView">
+          <Key>
+            <PropertyRef Name="DRDate" />
+            <PropertyRef Name="DRTime" />
+            <PropertyRef Name="EID" />
+            <PropertyRef Name="Remarks" />
+            <PropertyRef Name="SBDSB" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="DRDate" Type="date" Nullable="false" />
+          <Property Name="DRTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="EID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SBDSB" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SbDBModel1StoreContainer">
+          <EntitySet Name="DispatchView" EntityType="Self.DispatchView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DispatchView].[DRDate] AS [DRDate], 
+    [DispatchView].[DRTime] AS [DRTime], 
+    [DispatchView].[EID] AS [EID], 
+    [DispatchView].[Remarks] AS [Remarks], 
+    [DispatchView].[SBDSB] AS [SBDSB], 
+    [DispatchView].[Status] AS [Status]
+    FROM [dbo].[DispatchView] AS [DispatchView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ReceiveView" EntityType="Self.ReceiveView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ReceiveView].[DRDate] AS [DRDate], 
+    [ReceiveView].[DRTime] AS [DRTime], 
+    [ReceiveView].[EID] AS [EID], 
+    [ReceiveView].[Remarks] AS [Remarks], 
+    [ReceiveView].[SBDSB] AS [SBDSB], 
+    [ReceiveView].[Status] AS [Status]
+    FROM [dbo].[ReceiveView] AS [ReceiveView]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SbDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DispatchView">
+          <Key>
+            <PropertyRef Name="DRDate" />
+            <PropertyRef Name="DRTime" />
+            <PropertyRef Name="EID" />
+            <PropertyRef Name="SBDSB" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="DRDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DRTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SBDSB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReceiveView">
+          <Key>
+            <PropertyRef Name="DRDate" />
+            <PropertyRef Name="DRTime" />
+            <PropertyRef Name="EID" />
+            <PropertyRef Name="Remarks" />
+            <PropertyRef Name="SBDSB" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="DRDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DRTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SBDSB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SbDBViewEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DispatchViews" EntityType="Self.DispatchView" />
+          <EntitySet Name="ReceiveViews" EntityType="Self.ReceiveView" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SbDBModel1StoreContainer" CdmEntityContainer="SbDBViewEntities">
+          <EntitySetMapping Name="DispatchViews">
+            <EntityTypeMapping TypeName="SbDBModel1.DispatchView">
+              <MappingFragment StoreEntitySet="DispatchView">
+                <ScalarProperty Name="DRDate" ColumnName="DRDate" />
+                <ScalarProperty Name="DRTime" ColumnName="DRTime" />
+                <ScalarProperty Name="EID" ColumnName="EID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="SBDSB" ColumnName="SBDSB" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReceiveViews">
+            <EntityTypeMapping TypeName="SbDBModel1.ReceiveView">
+              <MappingFragment StoreEntitySet="ReceiveView">
+                <ScalarProperty Name="DRDate" ColumnName="DRDate" />
+                <ScalarProperty Name="DRTime" ColumnName="DRTime" />
+                <ScalarProperty Name="EID" ColumnName="EID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="SBDSB" ColumnName="SBDSB" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

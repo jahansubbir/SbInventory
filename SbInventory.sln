@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SbInventory", "SbInventory\SbInventory.csproj", "{1635DD6F-E29A-44A2-98C2-2508B87641EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48358C8B-9A3A-4058-87DE-6E4FD7C4A695}"
+	ProjectSection(SolutionItems) = preProject
+		Grant.sql = Grant.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1635DD6F-E29A-44A2-98C2-2508B87641EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1635DD6F-E29A-44A2-98C2-2508B87641EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1635DD6F-E29A-44A2-98C2-2508B87641EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1635DD6F-E29A-44A2-98C2-2508B87641EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

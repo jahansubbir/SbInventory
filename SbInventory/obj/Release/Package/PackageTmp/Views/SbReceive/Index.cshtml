@@ -1,0 +1,78 @@
+﻿@model IEnumerable<SbInventory.Models.ReceiveView>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<div class="w3-card-4" style="margin-top: 300px;margin-left: 200px; max-width: 800px">
+<table class="table" id="receiveTable">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DRDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DRTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SBDSB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.DRDate.ToString("dd-MMM-yy")
+            </td>
+            <td>
+                @item.DRTime.ToString("T")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SBDSB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>*@
+        </tr>
+    }
+    </tbody>
+
+</table>
+            </div>
+    @section scripts{
+
+        <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#receiveTable").dataTable();
+            })
+        </script>
+    }

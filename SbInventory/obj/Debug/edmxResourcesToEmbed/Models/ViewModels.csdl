@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SbDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DispatchView">
+    <Key>
+      <PropertyRef Name="DRDate" />
+      <PropertyRef Name="DRTime" />
+      <PropertyRef Name="EID" />
+      <PropertyRef Name="SBDSB" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="DRDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DRTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SBDSB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReceiveView">
+    <Key>
+      <PropertyRef Name="DRDate" />
+      <PropertyRef Name="DRTime" />
+      <PropertyRef Name="EID" />
+      <PropertyRef Name="Remarks" />
+      <PropertyRef Name="SBDSB" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="DRDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DRTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SBDSB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="SbDBViewEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DispatchViews" EntityType="Self.DispatchView" />
+    <EntitySet Name="ReceiveViews" EntityType="Self.ReceiveView" />
+  </EntityContainer>
+</Schema>
